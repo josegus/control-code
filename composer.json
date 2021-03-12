@@ -1,36 +1,35 @@
 {
-    "name": ":vendor_name/:package_name",
-    "description": ":package_description",
+    "name": "josegus/control-code",
+    "description": "Generate invoice's control code according to bolivian laws",
     "keywords": [
-        ":vendor_name",
-        ":package_name"
+        "gustavo vasquez",
+        "control-code"
     ],
-    "homepage": "https://github.com/:vendor_name/:package_name",
+    "homepage": "https://github.com/josegus/control-code",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Gustavo Vasquez",
+            "email": "jgvv15@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^7.4|^8.0"
+        "php": "^7.0|^8.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.17",
         "phpunit/phpunit": "^9.5",
-        "spatie/ray": "^1.10",
         "vimeo/psalm": "^4.3"
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src"
+            "Josegus\\ControlCode\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "Josegus\\ControlCode\\Tests\\": "tests"
         }
     },
     "scripts": {
