@@ -37,7 +37,7 @@ class ControlCodeTest extends TestCase
      *
      * We will ignore first line, because it contains headings text
      *
-     * @var boolean
+     * @var bool
      */
     protected $isFirstIteration = true;
 
