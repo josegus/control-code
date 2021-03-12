@@ -134,7 +134,7 @@ final class ControlCode
      *
      * @return void
      */
-    public function step1(): void
+    public function step1()
     {
         $this->invoiceNumber = Verhoeff::append($this->invoiceNumber, 2);
         $this->customerDocumentNumber = Verhoeff::append($this->customerDocumentNumber, 2);
@@ -143,19 +143,19 @@ final class ControlCode
 
         // Sum generated values
         $sumOfVariables =
-            $this->invoiceNumber +
-            $this->customerDocumentNumber +
-            $this->transactionDate +
-            $this->transactionMount;
+            intval($this->invoiceNumber) +
+            intval($this->customerDocumentNumber) +
+            intval($this->transactionDate) +
+            intval($this->transactionMount);
 
         // A la suma total se añade 5 digitos Verhoeff
-        $sumOfVariablesWithFiveVerhoeffDigits = Verhoeff::append($sumOfVariables, 5);
+        $sumOfVariablesWithFiveVerhoeffDigits = Verhoeff::append((string)$sumOfVariables, 5);
 
         // Obtener los ultimos 5 digitos (los generados) por Verhoeff
         $this->lastFiveVerhoeffDigits = substr($sumOfVariablesWithFiveVerhoeffDigits, -5);
     }
 
-    public function step2(): void
+    public function step2()
     {
         // Almacenar los 5 digitos obtenidos en un array
         $lastFiveVerhoeffDigitsArray = str_split($this->lastFiveVerhoeffDigits);
@@ -184,7 +184,7 @@ final class ControlCode
         $this->transactionMount .= $string5;
     }
 
-    public function step3(): void
+    public function step3()
     {
         $cadenaConcatenada = $this->authorizationNumber .
             $this->invoiceNumber .
@@ -198,7 +198,7 @@ final class ControlCode
         $this->allegedRC4 = AllegedRC4::generate($cadenaConcatenada, $llaveParaCifrado, 'normal');
     }
 
-    public function step4(): void
+    public function step4()
     {
         // Cadena encriptada en paso 3 se convierte a un Array
         $chars = str_split($this->allegedRC4);
@@ -234,7 +234,7 @@ final class ControlCode
         }
     }
 
-    public function step5(): void
+    public function step5()
     {
         // Almacenar los 5 digitos obtenidos en un array
         $lastFiveVerhoeffDigitsArray = str_split($this->lastFiveVerhoeffDigits);
@@ -259,10 +259,10 @@ final class ControlCode
         $sumProduct = $tmp1 + $tmp2 + $tmp3 + $tmp4 + $tmp5;
 
         // Se obtiene base64
-        $this->base64 = Base64::convert($sumProduct);
+        $this->base64 = Base64::convert((string)$sumProduct);
     }
 
-    public function step6(): void
+    public function step6()
     {
         $this->controlCode = AllegedRC4::generate($this->base64, $this->dosificationKey . $this->lastFiveVerhoeffDigits);
     }
@@ -322,7 +322,7 @@ final class ControlCode
         $value = str_replace(',', '.', $value);
 
         // Redondear a 0 decimales
-        $this->transactionMount = round($value, 0, PHP_ROUND_HALF_UP);
+        $this->transactionMount = round((float)$value, 0, PHP_ROUND_HALF_UP);
 
         return $this;
     }

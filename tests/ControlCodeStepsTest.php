@@ -10,11 +10,11 @@ class ControlCodeStepsTest extends TestCase
     protected function controlCode()
     {
         return ControlCode::make()
-            ->authorizationNumber(29040011007)
-            ->invoiceNumber(1503)
-            ->customerDocumentNumber(4189179011)
+            ->authorizationNumber('29040011007')
+            ->invoiceNumber('1503')
+            ->customerDocumentNumber('4189179011')
             ->transactionDate('2007-07-02')
-            ->transactionMount(2500)
+            ->transactionMount('2500')
             ->dosificationKey('9rCB7Sv4X29d)5k7N%3ab89p-3(5[A');
     }
 

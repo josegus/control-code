@@ -1,34 +1,49 @@
 # Generate invoice's control code according to bolivian laws
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/gustavo vasquez/control-code.svg?style=flat-square)](https://packagist.org/packages/gustavo vasquez/control-code)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/gustavo vasquez/control-code/Tests?label=tests)](https://github.com/gustavo vasquez/control-code/actions?query=workflow%3ATests+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/gustavo vasquez/control-code.svg?style=flat-square)](https://packagist.org/packages/gustavo vasquez/control-code)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/josegus/control-code.svg?style=flat-square)](https://packagist.org/packages/josegus/control-code)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/josegus/control-code/Tests?label=tests)](https://github.com/josegus/control-code/actions?query=workflow%3ATests+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/josegus/control-code.svg?style=flat-square)](https://packagist.org/packages/josegus/control-code)
 
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+This package can generate invoice's control code, according to bolivian laws.
 
-## Support us
+Here's how to use it:
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/package-skeleton-php.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/package-skeleton-php)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+```php
+ControlCode::make()
+    ->authorizationNumber('29040011007')
+    ->invoiceNumber('1503')
+    ->customerDocumentNumber('4189179011')
+    ->transactionDate('2007-07-02')
+    ->transactionMount('2500')
+    ->dosificationKey('9rCB7Sv4X29d)5k7N%3ab89p-3(5[A')
+    ->generate();
+```
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require gustavo vasquez/control-code
+composer require josegus/control-code
 ```
 
 ## Usage
 
 ```php
-$skeleton = new Gustavo vasquez\ControlCode();
-echo $skeleton->echoPhrase('Hello, Gustavo vasquez!');
+ControlCode::make()
+    ->authorizationNumber('29040011007')
+    ->invoiceNumber('1503')
+    ->customerDocumentNumber('4189179011')
+    ->transactionDate('2007-07-02')
+    ->transactionMount('2500')
+    ->dosificationKey('9rCB7Sv4X29d)5k7N%3ab89p-3(5[A')
+    ->generate();
 ```
+
+Notice that, in order to make it work properly:
+- all params must be string
+- transaction date must be in one of the following format: "Y-m-d", "Y/m/d", "Ymd"
 
 ## Testing
 
@@ -44,9 +59,9 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-## Security Vulnerabilities
+## Security
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+If you discover any security related issues, please email jgvv15@gmail.com instead of using the issue tracker.
 
 ## Credits
 
